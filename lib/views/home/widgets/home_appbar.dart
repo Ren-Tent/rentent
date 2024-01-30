@@ -1,15 +1,21 @@
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:rentent/services/theme_services.dart';
 
 import '../../../models/user_model.dart';
 import '../../../widgets/constants.dart';
 
-class HomeAppBar extends StatelessWidget {
+class HomeAppBar extends StatefulWidget {
   const HomeAppBar({super.key, this.userModel});
   final UserModel? userModel;
 
+  @override
+  State<HomeAppBar> createState() => _HomeAppBarState();
+}
+
+class _HomeAppBarState extends State<HomeAppBar> {
   @override
   Widget build(BuildContext context) {
     String greeting() {
@@ -35,9 +41,10 @@ class HomeAppBar extends StatelessWidget {
                 borderRadius: BorderRadius.circular(60),
                 child: FadeInImage.assetNetwork(
                   placeholder: 'assets/app_icon/placeholder.png',
-                  image: userModel != null
-                      ? userModel!.profilePicture
+                  image: widget.userModel != null
+                      ? widget.userModel!.profilePicture
                       : 'https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
+                  placeholderFit: BoxFit.contain,
                   fit: BoxFit.cover,
                   imageErrorBuilder: (context, error, stackTrace) {
                     return Image.asset('assets/app_icon/placeholder.png');
@@ -56,7 +63,7 @@ class HomeAppBar extends StatelessWidget {
                   ),
                 ),
                 Visibility(
-                  visible: userModel != null,
+                  visible: widget.userModel != null,
                   child: InkWell(
                     onTap: () {
                       // Get.to(() => const EditProfileScreen());
@@ -93,6 +100,17 @@ class HomeAppBar extends StatelessWidget {
           onPressed: () {
             final ThemeServices themeServices = ThemeServices();
             themeServices.changeThemeMode();
+            SystemChrome.setSystemUIOverlayStyle(
+              Theme.of(context).brightness == Brightness.light
+                  ? SystemUiOverlayStyle.dark.copyWith(
+                      statusBarBrightness: Brightness.dark,
+                      statusBarIconBrightness: Brightness.dark,
+                    )
+                  : SystemUiOverlayStyle.light.copyWith(
+                      statusBarBrightness: Brightness.light,
+                      statusBarIconBrightness: Brightness.light,
+                    ),
+            );
           },
           icon: Container(
             height: 60,

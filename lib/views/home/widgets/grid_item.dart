@@ -28,6 +28,7 @@ class GridItem extends StatelessWidget {
                   placeholder: 'assets/app_icon/placeholder.png',
                   image:
                       'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aG91c2V8ZW58MHx8MHx8fDA%3D',
+                  placeholderFit: BoxFit.contain,
                   fit: BoxFit.cover,
                 ),
               ),

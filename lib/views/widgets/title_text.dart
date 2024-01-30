@@ -16,10 +16,7 @@ class TitleText extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          text,
-          style: TextStyle(),
-        ),
+        Text(text),
         Visibility(
           visible: buttonText != null,
           child: buttonText == null

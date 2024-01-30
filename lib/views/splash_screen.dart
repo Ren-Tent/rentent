@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:lottie/lottie.dart';
@@ -22,6 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     _checkIfLoggedIn();
     startTime();
+
     super.initState();
   }
 
@@ -62,6 +64,17 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      Theme.of(context).brightness == Brightness.light
+          ? SystemUiOverlayStyle.light.copyWith(
+              statusBarBrightness: Brightness.light,
+              statusBarIconBrightness: Brightness.light,
+            )
+          : SystemUiOverlayStyle.dark.copyWith(
+              statusBarBrightness: Brightness.dark,
+              statusBarIconBrightness: Brightness.dark,
+            ),
+    );
     return Scaffold(
       body: LayoutBuilder(builder: (context, constraints) {
         return Stack(
@@ -92,7 +105,7 @@ class _SplashScreenState extends State<SplashScreen> {
               right: 0,
               // alignment: Alignment.bottomCenter,
               child: Text(
-                'FyndRx © ${DateTime.now().year}',
+                'Rentent © ${DateTime.now().year}',
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontSize: 15),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'constants.dart';
 
@@ -14,8 +15,11 @@ final ThemeData lightTheme = ThemeData(
     color: Color(0xFFD9D9D9),
   ),
   appBarTheme: const AppBarTheme(
+    systemOverlayStyle:
+        SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
     centerTitle: false,
     elevation: 0,
+    iconTheme: IconThemeData(color: kDarkColor),
   ),
   iconTheme: const IconThemeData(color: kDarkColor),
   textTheme: ThemeData.light().textTheme.apply(
@@ -27,6 +31,18 @@ final ThemeData lightTheme = ThemeData(
     primary: kPrimaryColor,
     secondary: kSecondaryColor,
     error: kErrorColor,
+  ),
+  chipTheme: ChipThemeData(
+    labelStyle: const TextStyle(
+      fontFamily: 'Okine',
+      color: kPrimaryColor,
+      fontWeight: FontWeight.bold,
+    ),
+    color: const MaterialStatePropertyAll(kPrimarySecondaryColor),
+    side: const BorderSide(width: 0, color: kPrimarySecondaryColor),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10),
+    ),
   ),
   inputDecorationTheme: const InputDecorationTheme(
     labelStyle: TextStyle(
@@ -50,11 +66,15 @@ ThemeData darkTheme = ThemeData(
   dividerTheme: const DividerThemeData(
     color: Color(0xFFD9D9D9),
   ),
+  primaryIconTheme: const IconThemeData(color: Colors.white),
   appBarTheme: const AppBarTheme(
+    systemOverlayStyle:
+        SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
     centerTitle: false,
     elevation: 0,
+    iconTheme: IconThemeData(color: Colors.white),
   ),
-  iconTheme: const IconThemeData(color: kDarkColor),
+  iconTheme: const IconThemeData(color: Colors.white),
   textTheme: ThemeData.dark().textTheme.apply(
         bodyColor: Colors.white,
         fontFamily: 'Okine',
@@ -64,6 +84,18 @@ ThemeData darkTheme = ThemeData(
     primary: kPrimaryColor,
     secondary: kSecondaryColor,
     error: kErrorColor,
+  ),
+  chipTheme: ChipThemeData(
+    labelStyle: const TextStyle(
+      fontFamily: 'Okine',
+      color: kPrimaryColor,
+      fontWeight: FontWeight.bold,
+    ),
+    color: const MaterialStatePropertyAll(kPrimarySecondaryColor),
+    side: const BorderSide(width: 0, color: kPrimarySecondaryColor),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10),
+    ),
   ),
   inputDecorationTheme: const InputDecorationTheme(
     labelStyle: TextStyle(
